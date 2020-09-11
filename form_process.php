@@ -22,14 +22,12 @@ if (isset($_POST["submit"])) {
     }
     else {
         switch ($username) {
-            case strlen($username) < 5:
+            case strlen($username) <= 5:
                 echo "Username has to be longer than 5." . "<br>";
                 break;
-            case strlen($username) > 12:
+            case strlen($username) >= 12:
                 echo "Username has to be less than 12." . "<br>";
                 break;
-            default:
-                echo "Welcome to our site " . $username . " !" . "<br>";
         }
 
         switch ($password) {
@@ -38,6 +36,7 @@ if (isset($_POST["submit"])) {
                 break;
             default:
                 if (5 < strlen($username) and strlen($username) < 12) {
+                    echo "Welcome to our site " . $username . " !" . "<br>";
                     echo "Your password: " . $password . "<br>";
                     $query = "INSERT INTO users(username, password) ";
                     $query .= "VALUES ('$username', '$password')";
